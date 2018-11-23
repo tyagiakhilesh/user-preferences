@@ -2,6 +2,7 @@ package com.akhilesh.learning;
 
 import com.akhilesh.learning.core.UserService;
 import com.akhilesh.learning.db.dao.UserDao;
+import com.akhilesh.learning.db.entity.Preferences;
 import com.akhilesh.learning.db.entity.UserEntity;
 import com.akhilesh.learning.resources.UserResource;
 import io.dropwizard.Application;
@@ -13,7 +14,7 @@ import io.dropwizard.setup.Environment;
 public class PreferencesApplicationApplication extends Application<PreferencesApplicationConfiguration> {
 
     private final HibernateBundle<PreferencesApplicationConfiguration> hibernate =
-            new HibernateBundle<PreferencesApplicationConfiguration>(UserEntity.class) {
+            new HibernateBundle<PreferencesApplicationConfiguration>(UserEntity.class, Preferences.class) {
                 @Override
                 public DataSourceFactory getDataSourceFactory(PreferencesApplicationConfiguration configuration) {
                     return configuration.getDataSourceFactory();

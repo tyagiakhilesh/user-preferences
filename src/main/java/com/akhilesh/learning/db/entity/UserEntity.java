@@ -1,9 +1,13 @@
 package com.akhilesh.learning.db.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 
 @Entity
 @NamedQueries(
@@ -17,6 +21,9 @@ public class UserEntity {
     private String userId;
     private String userName;
     private String emailId;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id")
+    private Preferences preferences;
 
     //<editor-fold defaultstate="collapsed" desc="Getters and Setters">
     public String getUserId() {
@@ -42,5 +49,14 @@ public class UserEntity {
     public void setEmailId(final String emailId) {
         this.emailId = emailId;
     }
+
+    public Preferences getPreferences() {
+        return preferences;
+    }
+
+    public void setPreferences(final Preferences preferences) {
+        this.preferences = preferences;
+    }
+
     //</editor-fold>
 }
